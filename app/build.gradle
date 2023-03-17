@@ -20,6 +20,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            buildConfigField "boolean","SWEET_LOG","true"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean","SWEET_LOG","true"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -37,7 +43,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //谷歌GSON解析
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    //OKHTTP
+    implementation "com.squareup.okhttp3:okhttp:4.10.0"
+
+    //material库
+    implementation "com.google.android.material:material:1.8.0"
+
+    //圆形图片控件
+    implementation "de.hdodenhof:circleimageview:3.1.0"
 }
