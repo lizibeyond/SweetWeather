@@ -12,19 +12,31 @@ import java.util.Map;
  * 四叶草network类
  */
 public class SweetNetWork {
-
+    private static Map<String,String> cityMap;
+    private static Map<String,String> cityAxisMap;
     /**
      * 获取城市信息
      * @param city 要获取得城市
      * @param listener 事件监听
      */
     public static <T> void getCityData(String city,SweetHttpListener<T> listener){
-        Map<String,String> map = new LinkedHashMap<>();
-        map.put("query",city);
-        map.put("token",SweetUrlConsts.CAIYUNTOKEN);
-        map.put("lang","zh_CN");
-        new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYSURL, map, listener);
+        if (cityMap == null){
+            cityMap  = new LinkedHashMap<>();
+        }
+        cityMap.put("query",city);
+        cityMap.put("token",SweetUrlConsts.CAIYUNTOKEN);
+        cityMap.put("lang","zh_CN");
+        new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYSURL, cityMap,true, listener);
     }
 
+    public static <T> void getWeather(String cityAxis,SweetHttpListener<T> listener){
+        if (cityAxisMap == null){
+            cityAxisMap = new LinkedHashMap<>();
+        }
+        cityAxisMap.put("token",SweetUrlConsts.CAIYUNTOKEN);
+        cityAxisMap.put("axis",cityAxis);
+        cityAxisMap.put("json","realtime.json");
+        new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYAXISURL,cityAxisMap,false,listener);
+    }
 
 }

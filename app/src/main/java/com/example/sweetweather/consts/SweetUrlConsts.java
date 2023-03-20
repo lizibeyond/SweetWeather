@@ -6,8 +6,14 @@ package com.example.sweetweather.consts;
  */
 public class SweetUrlConsts {
 
+    /**token**/
+    public static final String CAIYUNTOKEN = "7RnsWJq7dZmfkMQr";
+
     /**彩云城市URL**/
     public static final String CAIYUNCITYSURL = "https://api.caiyunapp.com/v2/place";
 
-    public static final String CAIYUNTOKEN = "7RnsWJq7dZmfkMQr";
+    /**彩云天气URL**/
+    public static final String CAIYUNCITYAXISURL = "https://api.caiyunapp.com/v2.5";
+
+
 }

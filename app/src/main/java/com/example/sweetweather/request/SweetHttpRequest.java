@@ -33,8 +33,8 @@ public class SweetHttpRequest {
      * @param map 参数
      * @param listener 监听
      */
-    public <T> void get(String url,Map<String,String> map, SweetHttpListener<T> listener){
-        get(url,map,false,listener);
+    public <T> void get(String url,Map<String,String> map,boolean isTwo, SweetHttpListener<T> listener){
+        get(url,map,isTwo,false,listener);
     }
 
     /**
@@ -44,14 +44,14 @@ public class SweetHttpRequest {
      * @param listener 监听
      * @param isAddPublicParameters 是否使用公共参数
      */
-    public <T> void get(String url, Map<String,String> map,boolean isAddPublicParameters, SweetHttpListener<T> listener){
+    public <T> void get(String url, Map<String,String> map,boolean isTwo,boolean isAddPublicParameters, SweetHttpListener<T> listener){
         if (SweetUtils.isNullOrEmpty(url) || map.isEmpty()){
             return;
         }
         if (isAddPublicParameters){
             addPublicParameters(map);
         }
-        String requestUrl = url + "?" + mapToParsString(map,false);
+        String requestUrl = url + mapToParsString(map,isTwo,false);
         SweetLog.d(requestUrl);
         final Request request = new Request.Builder().url(requestUrl).build();
         SweetHttpClient.getClient().newCall(request).enqueue(new Callback() {
@@ -182,5 +182,33 @@ public class SweetHttpRequest {
             index++;
         }
         return builder.toString();
+    }
+
+    /**
+     * 将map拼接成String
+     * @param map 传入要转换得map
+     * @param isEncode 是否加密
+     * @param isTwo 选择拼接版本
+     */
+    private String mapToParsString(Map<String,String> map,boolean isTwo, boolean isEncode){
+        StringBuilder builder = new StringBuilder();
+        if (isTwo){
+            int index = 1;
+            builder.append("?");
+            for (String e: map.keySet()) {
+                builder.append(e).append("=").append(isEncode ? Uri.encode(map.get(e)) : map.get(e));
+                if (map.size() != index){
+                    builder.append("&");
+                }
+                index++;
+            }
+            return builder.toString();
+        }else {
+            for (String e : map.values()){
+                builder.append("/").append(e);
+            }
+            return builder.toString();
+        }
+
     }
 }
