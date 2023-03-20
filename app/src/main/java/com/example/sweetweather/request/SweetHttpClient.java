@@ -1,6 +1,6 @@
 package com.example.sweetweather.request;
 
-import com.example.sweetweather.utils.SweetUtilsKt;
+import com.example.sweetweather.utils.SweetUtils;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -36,7 +36,7 @@ public class SweetHttpClient {
         //获取端口号
         String proxyPort = System.getProperty("http.proxyPort");
 
-        if (!SweetUtilsKt.isNullOrEmpty(proxyPort) && !SweetUtilsKt.isNullOrEmpty(proxyHost)){
+        if (!SweetUtils.isNullOrEmpty(proxyPort) && !SweetUtils.isNullOrEmpty(proxyHost)){
             //设置代理
             builder.proxy(new Proxy(Proxy.Type.HTTP,new InetSocketAddress(proxyHost,Integer.parseInt(proxyPort))));
         }

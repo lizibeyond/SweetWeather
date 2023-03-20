@@ -1,9 +1,12 @@
 package com.example.sweetweather.request;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.example.sweetweather.error.SweetError;
-import com.example.sweetweather.utils.SweetUtilsKt;
+import com.example.sweetweather.log.SweetLog;
+import com.example.sweetweather.utils.SweetUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -42,13 +45,15 @@ public class SweetHttpRequest {
      * @param isAddPublicParameters 是否使用公共参数
      */
     public <T> void get(String url, Map<String,String> map,boolean isAddPublicParameters, SweetHttpListener<T> listener){
-        if (SweetUtilsKt.isNullOrEmpty(url) || map.isEmpty()){
+        if (SweetUtils.isNullOrEmpty(url) || map.isEmpty()){
             return;
         }
         if (isAddPublicParameters){
             addPublicParameters(map);
         }
-        final Request request = new Request.Builder().url(url).build();
+        String requestUrl = url + "?" + mapToParsString(map,false);
+        SweetLog.d(requestUrl);
+        final Request request = new Request.Builder().url(requestUrl).build();
         SweetHttpClient.getClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -101,7 +106,7 @@ public class SweetHttpRequest {
      * @param isAddPublicParameters 是否使用公共参数
      */
     public <T> void post(String url,Map<String,String> map,boolean isAddPublicParameters,SweetHttpListener<T> listener){
-        if (SweetUtilsKt.isNullOrEmpty(url) || map.isEmpty()){
+        if (SweetUtils.isNullOrEmpty(url) || map.isEmpty()){
             return;
         }
         if (isAddPublicParameters){
@@ -160,4 +165,22 @@ public class SweetHttpRequest {
         map.put("","");
     }
 
+    /**
+     * 将map拼接成String
+     * @param map 传入要转换得map
+     * @param isEncode 是否加密
+     */
+    private String mapToParsString(Map<String,String> map, boolean isEncode){
+
+        StringBuilder builder = new StringBuilder();
+        int index = 1;
+        for (String e: map.keySet()) {
+            builder.append(e).append("=").append(isEncode ? Uri.encode(map.get(e)) : map.get(e));
+            if (map.size() != index){
+                builder.append("&");
+            }
+            index++;
+        }
+        return builder.toString();
+    }
 }

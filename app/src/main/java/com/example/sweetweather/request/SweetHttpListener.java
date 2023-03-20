@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
  * @author Lizi
  * PS: 网络请求监听类，用于监听网络请求
  */
-abstract class SweetHttpListener<T> {
+public abstract class SweetHttpListener<T> {
 
     public Type entity;
 
@@ -22,7 +22,7 @@ abstract class SweetHttpListener<T> {
     }
 
     /**成功**/
-    public abstract void onSucceed(T entuty);
+    public abstract void onSucceed(T entity);
     /**失败**/
     public abstract void onFeild(SweetError error);
 
