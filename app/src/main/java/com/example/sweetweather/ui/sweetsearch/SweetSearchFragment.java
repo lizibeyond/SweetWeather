@@ -1,4 +1,4 @@
-package com.example.sweetweather.ui.SweetSearch;
+package com.example.sweetweather.ui.sweetsearch;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,6 +23,7 @@ import com.example.sweetweather.request.SweetHttpListener;
 
 
 public class SweetSearchFragment extends Fragment {
+    private SweetSearchViewModel viewModel;
 
     @Nullable
     @Override
@@ -37,11 +38,14 @@ public class SweetSearchFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.search_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        new SweetSearchViewModel().getCity().observe(getViewLifecycleOwner(), new Observer<Citys>() {
+        viewModel = new SweetSearchViewModel();
+        viewModel.getCity().observe(getViewLifecycleOwner(), new Observer<Citys>() {
             @Override
             public void onChanged(Citys citys) {
                 if (citys.getPlaces() != null) {
-                    recyclerView.setAdapter(new PlaceAdapter(SweetSearchFragment.this,citys.getPlaces()));
+                    PlaceAdapter adapter = new PlaceAdapter(SweetSearchFragment.this,citys.getPlaces());
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -63,7 +67,7 @@ public class SweetSearchFragment extends Fragment {
                 SweetNetWork.getCityData(s.toString(), new SweetHttpListener<Citys>() {
                     @Override
                     public void onSucceed(Citys entity) {
-                        SweetSearchViewModel.setCity(entity);
+                        viewModel.setCity(entity);
                     }
 
                     @Override

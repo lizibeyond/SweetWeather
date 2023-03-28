@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * @author Lizi
+ * PS:城市数据类
+ */
 public class Citys {
     private String status;
 

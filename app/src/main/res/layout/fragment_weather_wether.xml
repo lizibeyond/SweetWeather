@@ -9,26 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            android:visibility="visible">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/now"/>
-
-                <include layout="@layout/forecast"/>
-
-                <include layout="@layout/life"/>
-
-            </LinearLayout>
-
-        </ScrollView>
+        <include layout="@layout/now" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -1,9 +1,8 @@
-package com.example.sweetweather.ui.SweetSearch
+package com.example.sweetweather.ui.sweetsearch
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.example.sweetweather.R
 import com.example.sweetweather.base.BaseActivity
 
@@ -24,6 +23,5 @@ class SweetSearchActivity : BaseActivity() {
 
         supportFragmentManager.beginTransaction().replace(R.id.search_frame,SweetSearchFragment()).commit()
     }
-
 
 }

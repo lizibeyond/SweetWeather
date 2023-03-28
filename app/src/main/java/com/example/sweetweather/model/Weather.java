@@ -1,5 +1,7 @@
 package com.example.sweetweather.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author Lizi
  * PS: 天气数据类
@@ -39,7 +41,8 @@ public class Weather {
 
         public class Realtime{
             private String skycon;
-            private String temperature;
+            private Double temperature;
+            @SerializedName("air_quality")
             private AirQuality airQuality;
 
             public String getSkycon() {
@@ -50,11 +53,11 @@ public class Weather {
                 this.skycon = skycon;
             }
 
-            public String getTemperature() {
+            public Double getTemperature() {
                 return temperature;
             }
 
-            public void setTemperature(String temperature) {
+            public void setTemperature(Double temperature) {
                 this.temperature = temperature;
             }
 
@@ -67,17 +70,17 @@ public class Weather {
             }
 
             public class AirQuality{
-                private Api api;
+                private Aqi aqi;
 
-                public Api getApi() {
-                    return api;
+                public Aqi getAqi() {
+                    return aqi;
                 }
 
-                public void setApi(Api api) {
-                    this.api = api;
+                public void setAqi(Aqi aqi) {
+                    this.aqi = aqi;
                 }
 
-                public class Api{
+                public class Aqi{
                     private String chn;
 
                     public String getChn() {

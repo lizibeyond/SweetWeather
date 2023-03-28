@@ -14,6 +14,8 @@ import java.util.Map;
 public class SweetNetWork {
     private static Map<String,String> cityMap;
     private static Map<String,String> cityAxisMap;
+
+    private static Map<String,String> cityDailyMap;
     /**
      * 获取城市信息
      * @param city 要获取得城市
@@ -29,6 +31,11 @@ public class SweetNetWork {
         new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYSURL, cityMap,true, listener);
     }
 
+    /**
+     * 获取坐标城市天气信息
+     * @param cityAxis 城市坐标
+     * @param listener 监听
+     */
     public static <T> void getWeather(String cityAxis,SweetHttpListener<T> listener){
         if (cityAxisMap == null){
             cityAxisMap = new LinkedHashMap<>();
@@ -39,4 +46,19 @@ public class SweetNetWork {
         new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYAXISURL,cityAxisMap,false,listener);
     }
 
+    /**
+     * 获取坐标城市未来几天天气情况
+     * @param cityAxis 城市坐标
+     * @param listener 监听
+     */
+    public static <T> void getDailyWeather(String cityAxis,SweetHttpListener<T> listener){
+        if (cityDailyMap == null){
+            cityDailyMap = new LinkedHashMap<>();
+        }
+        cityDailyMap.put("token",SweetUrlConsts.CAIYUNTOKEN);
+        cityDailyMap.put("axis",cityAxis);
+        cityDailyMap.put("json","daily.json");
+        new SweetHttpRequest().get(SweetUrlConsts.CAIYUNCITYAXISURL,cityDailyMap,false,listener);
+
+    }
 }

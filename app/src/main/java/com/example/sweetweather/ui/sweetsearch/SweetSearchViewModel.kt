@@ -1,4 +1,4 @@
-package com.example.sweetweather.ui.SweetSearch
+package com.example.sweetweather.ui.sweetsearch
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,12 +10,9 @@ class SweetSearchViewModel : ViewModel() {
     val city: LiveData<Citys>
         get() = _city
 
-    companion object{
-        private val _city = MutableLiveData<Citys>()
-        @JvmStatic
-        fun setCity(city: Citys) {
-            _city.postValue(city)
-        }
+    private val _city = MutableLiveData<Citys>()
+    fun setCity(city: Citys) {
+        _city.postValue(city)
     }
 
 }

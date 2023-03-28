@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SweetWeather"
         tools:targetApi="31">
         <activity
-            android:name=".ui.SweetSplsh.SweetSplshActivity"
+            android:name=".ui.sweetsplsh.SweetSplshActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -22,12 +22,14 @@
         </activity>
 
         <activity
-            android:name=".ui.SweetWeather.SweetWeatherActivity"
-            android:exported="false" />
+            android:name=".ui.sweetweather.SweetWeatherActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
 
         <activity
-            android:name=".ui.SweetSearch.SweetSearchActivity"
-            android:exported="false" />
+            android:name=".ui.sweetsearch.SweetSearchActivity"
+            android:exported="false"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

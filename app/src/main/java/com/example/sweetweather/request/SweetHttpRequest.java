@@ -32,6 +32,7 @@ public class SweetHttpRequest {
      * @param url 地址
      * @param map 参数
      * @param listener 监听
+     * @param isTwo 2.0 true/2.5 false
      */
     public <T> void get(String url,Map<String,String> map,boolean isTwo, SweetHttpListener<T> listener){
         get(url,map,isTwo,false,listener);
