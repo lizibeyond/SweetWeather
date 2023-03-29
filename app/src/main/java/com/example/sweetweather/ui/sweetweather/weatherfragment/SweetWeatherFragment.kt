@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.sweetweather.R
 import com.example.sweetweather.log.SweetLog
-import com.example.sweetweather.model.getSky
+import com.example.sweetweather.dao.getSky
 import com.example.sweetweather.ui.sweetsearch.SweetSearchActivity
 import com.example.sweetweather.ui.sweetweather.SweetWeatherActivity
 

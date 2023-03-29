@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sweetweather.R
 import com.example.sweetweather.log.SweetLog
-import com.example.sweetweather.model.getSky
+import com.example.sweetweather.dao.getSky
 import com.example.sweetweather.ui.sweetweather.SweetWeatherActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat

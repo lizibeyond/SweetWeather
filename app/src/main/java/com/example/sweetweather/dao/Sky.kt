@@ -1,4 +1,4 @@
-package com.example.sweetweather.model
+package com.example.sweetweather.dao
 
 import com.example.sweetweather.R
 

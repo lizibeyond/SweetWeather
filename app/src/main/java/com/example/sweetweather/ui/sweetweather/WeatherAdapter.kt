@@ -14,8 +14,8 @@ class WeatherAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment = when(position){
         0 -> SweetWeatherFragment()
         1 -> SweetForecastFragment()
-        2 -> PaperDollsFragment()
-        3 -> CubeFragment()
+        2 -> CubeFragment()
+        3 -> PaperDollsFragment()
         else -> {
             SweetWeatherFragment()
         }
