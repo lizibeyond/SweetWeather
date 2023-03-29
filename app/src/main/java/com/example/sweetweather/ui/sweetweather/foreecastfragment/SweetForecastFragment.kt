@@ -13,6 +13,7 @@ import com.example.sweetweather.R
 import com.example.sweetweather.log.SweetLog
 import com.example.sweetweather.model.getSky
 import com.example.sweetweather.ui.sweetweather.SweetWeatherActivity
+import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -20,7 +21,7 @@ import java.util.Locale
 class SweetForecastFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this)[ForecastFragmentViewModel::class.java] }
     private lateinit var weatherActivity: SweetWeatherActivity
-
+    private lateinit var paperDollsImg : CircleImageView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,10 +34,15 @@ class SweetForecastFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val forecastFramelayout: LinearLayout = view.findViewById(R.id.forecast_linearlayout)
+        paperDollsImg = view.findViewById(R.id.paperdolls_btn)
+
 
         if (activity != null) {
             weatherActivity = activity as SweetWeatherActivity
             viewModel.getDailys(weatherActivity.cityAxis)
+
+            paperDollsImg.setOnClickListener {
+            }
 
             viewModel.dailys.observe(viewLifecycleOwner) {
                 val dailySize = it.result.daily.skycon.size
@@ -53,7 +59,7 @@ class SweetForecastFragment : Fragment() {
 
                     SweetLog.d(date.toString())
                     val temperature =
-                        dailys.temperature[i].min + " ~ " + dailys.temperature[i].max
+                        dailys.temperature[i].min.toInt().toString() + " ~ " + dailys.temperature[i].max.toInt() + " ℃"
                     view.findViewById<TextView>(R.id.forecast_temperature).text = temperature
 
                     view.findViewById<TextView>(R.id.forecast_date).text = date.toString()
@@ -84,4 +90,5 @@ class SweetForecastFragment : Fragment() {
         super.onResume()
         viewModel.getDailys(weatherActivity.cityAxis)
     }
+
 }

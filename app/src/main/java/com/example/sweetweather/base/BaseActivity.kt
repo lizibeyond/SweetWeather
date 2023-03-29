@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 open class BaseActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         //安卓28以上版本挖孔屏,适配全屏
         if (Build.VERSION.SDK_INT >= 28) {

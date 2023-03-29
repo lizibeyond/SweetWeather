@@ -124,22 +124,22 @@ public class Dailys {
         }
 
         public class Temperature{
-            private String max;
-            private String min;
+            private Float max;
+            private Float min;
 
-            public String getMax() {
+            public Float getMax() {
                 return max;
             }
 
-            public void setMax(String max) {
+            public void setMax(Float max) {
                 this.max = max;
             }
 
-            public String getMin() {
+            public Float getMin() {
                 return min;
             }
 
-            public void setMin(String min) {
+            public void setMin(Float min) {
                 this.min = min;
             }
         }

@@ -15,5 +15,5 @@ public class SweetUrlConsts {
     /**彩云天气URL**/
     public static final String CAIYUNCITYAXISURL = "https://api.caiyunapp.com/v2.5";
 
-
+    public static final String PAPERDOLLSURL = "https://mxd.dvg.cn/zhiwawa/";
 }

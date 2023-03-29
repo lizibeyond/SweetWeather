@@ -14,6 +14,9 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters "armeabi","armeabi-v7a","x86","mips"
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +43,8 @@ android {
     buildscript {
         repositories {
             google()
+            // 增加这行
+            mavenCentral()
         }
         dependencies {
             def nav_version = "2.5.3"
@@ -78,4 +83,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
+    //腾讯X5内核
+    api 'com.tencent.tbs:tbssdk:44286'
 }

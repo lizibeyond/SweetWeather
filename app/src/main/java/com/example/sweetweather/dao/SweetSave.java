@@ -43,4 +43,21 @@ public class SweetSave {
                     preferences.getString("lat", "");
         }
     }
+
+    /**
+     * 第一次启动保存
+     */
+    public static void saveFristLanuch(){
+        SharedPreferences.Editor editor = BaseApplication.context.getSharedPreferences("data",Context.MODE_PRIVATE).edit();
+        editor.putBoolean("fristLaunch",true);
+        editor.apply();
+    }
+
+    /**
+     * 是否是第一次启动app
+     */
+    public static boolean getFristLanuch(){
+        SharedPreferences preferences = BaseApplication.context.getSharedPreferences("data",Context.MODE_PRIVATE);
+        return preferences.getBoolean("fristLaunch",false);
+    }
 }
